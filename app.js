@@ -1,3 +1,6 @@
+
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -9,6 +12,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -27,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-index.webSocket = io;
+index.webSocket=io;
 
 app.use('/', index);
 app.use('/users', users);
@@ -38,9 +43,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-
-
 
 io.on('connection', function (socket) {
 

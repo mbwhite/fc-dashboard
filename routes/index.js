@@ -1,7 +1,9 @@
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 
-var webSocket;
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,13 +13,12 @@ router.get('/', function(req, res, next) {
 router.post('/', function (req, res) {
 
 	console.log(req.body);
-	webSocket.emit('news', req.body);
+	router.webSocket.emit('news', req.body);
   res.send('POST request to the homepage')
-	
+
 
 })
 
 
 
 module.exports = router;
-module.webSocket = webSocket;
